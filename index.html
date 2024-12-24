@@ -41,11 +41,11 @@
             right: 10px;
         }
         .bottom-left {
-            bottom: 10px;
+            bottom: 100px; /* Adjusted position to avoid overlap */
             left: 10px;
         }
         .bottom-right {
-            bottom: 10px;
+            bottom: 100px; /* Adjusted position to avoid overlap */
             right: 10px;
         }
         /* Description Text */
@@ -74,13 +74,13 @@
             width: 250px;
         }
         .desc-bottom-left {
-            bottom: 60px;
+            bottom: 40px; /* Adjusted position to avoid overlap */
             left: 10px;
             position: absolute;
             width: 250px;
         }
         .desc-bottom-right {
-            bottom: 60px;
+            bottom: 40px; /* Adjusted position to avoid overlap */
             right: 10px;
             position: absolute;
             width: 250px;
@@ -95,27 +95,13 @@
             font-size: 24px;
             color: #3498db; /* Blue color for snowflakes */
             opacity: 0.8;
-            animation: fall 10s linear infinite, rotate 3s linear infinite;
-            transform-origin: center center;
+            animation: fall 10s linear infinite;
         }
 
         /* Keyframes for snowflake falling */
         @keyframes fall {
             to {
                 transform: translateY(100vh);
-            }
-        }
-
-        /* Keyframes for snowflake rotation */
-        @keyframes rotate {
-            0% {
-                transform: rotateY(0deg) rotateX(0deg);
-            }
-            50% {
-                transform: rotateY(180deg) rotateX(180deg);
-            }
-            100% {
-                transform: rotateY(360deg) rotateX(360deg);
             }
         }
 
