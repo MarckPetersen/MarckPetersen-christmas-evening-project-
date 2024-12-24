@@ -41,11 +41,11 @@
             right: 10px;
         }
         .bottom-left {
-            bottom: 250px; /* Increased bottom spacing for headline */
+            bottom: 250px;
             left: 10px;
         }
         .bottom-right {
-            bottom: 250px; /* Increased bottom spacing for headline */
+            bottom: 250px;
             right: 10px;
         }
         /* Description Text */
@@ -74,13 +74,13 @@
             width: 250px;
         }
         .desc-bottom-left {
-            bottom: 150px; /* Increased bottom spacing for description */
+            bottom: 80px;
             left: 10px;
             position: absolute;
             width: 250px;
         }
         .desc-bottom-right {
-            bottom: 150px; /* Increased bottom spacing for description */
+            bottom: 80px;
             right: 10px;
             position: absolute;
             width: 250px;
@@ -93,7 +93,6 @@
             z-index: 9999;
             user-select: none;
             font-size: 24px;
-            color: #e74c3c; /* Red color for snowflakes */
             opacity: 0.8;
             animation: fall 10s linear infinite;
         }
@@ -140,6 +139,15 @@
                 let snowflake = document.createElement('div');
                 snowflake.classList.add('snowflake');
                 snowflake.innerText = '❄'; // Snowflake symbol
+
+                // Randomly choose between blue and red snowflakes
+                let color = Math.random() < 0.9 ? '#3498db' : '#e74c3c';  // 90% chance for blue or red
+                snowflake.style.color = color;
+
+                // Occasionally add a gold snowflake (about 1 out of 20)
+                if (Math.random() < 0.05) {
+                    snowflake.style.color = '#f1c40f'; // Gold color for special snowflakes
+                }
 
                 // Set random position and animation duration
                 let startPosition = Math.random() * 100;  // Random horizontal start position
