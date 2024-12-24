@@ -20,6 +20,7 @@
             max-width: 500px;
             margin-top: 50px;
         }
+        /* Corner Text */
         .corner-text {
             position: absolute;
             font-size: 24px;
@@ -47,6 +48,7 @@
             bottom: 10px;
             right: 10px;
         }
+        /* Description Text */
         .description {
             font-size: 16px;
             color: #fff;
@@ -59,6 +61,30 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .desc-top-left {
+            top: 60px;
+            left: 10px;
+            position: absolute;
+            width: 250px;
+        }
+        .desc-top-right {
+            top: 60px;
+            right: 10px;
+            position: absolute;
+            width: 250px;
+        }
+        .desc-bottom-left {
+            bottom: 60px;
+            left: 10px;
+            position: absolute;
+            width: 250px;
+        }
+        .desc-bottom-right {
+            bottom: 60px;
+            right: 10px;
+            position: absolute;
+            width: 250px;
+        }
 
         /* Snowflake animation */
         .snowflake {
@@ -69,36 +95,52 @@
             font-size: 24px;
             color: #3498db; /* Blue color for snowflakes */
             opacity: 0.8;
-            animation: fall 10s linear infinite;
+            animation: fall 10s linear infinite, rotate 3s linear infinite;
+            transform-origin: center center;
         }
 
+        /* Keyframes for snowflake falling */
         @keyframes fall {
             to {
-                transform: translateY(100vh) rotate(360deg);
+                transform: translateY(100vh);
             }
         }
+
+        /* Keyframes for snowflake rotation */
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            50% {
+                transform: rotateY(180deg) rotateX(180deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(360deg);
+            }
+        }
+
     </style>
 </head>
 <body>
     <img id="tree" src="christmas_tree.jpg" alt="Christmas Tree">
     
+    <!-- Headline text in the four corners -->
     <div class="corner-text top-left">Merry Christmas!</div>
-    <div class="description">
+    <div class="corner-text top-right">The holiday season is here!</div>
+    <div class="corner-text bottom-left">Let the celebrations begin!</div>
+    <div class="corner-text bottom-right">Wishing you joy and happiness!</div>
+    
+    <!-- Description text underneath each headline -->
+    <div class="description desc-top-left">
         This is the time of year to come together and celebrate the joys of family, love, and friendship. Let’s cherish the moments that make this season special, and spread warmth wherever we go.
     </div>
-    
-    <div class="corner-text top-right">The holiday season is here!</div>
-    <div class="description">
+    <div class="description desc-top-right">
         It’s that magical time when homes glow with festive lights, the scent of fresh pine fills the air, and hearts are filled with anticipation. The holiday season brings us all a little closer together.
     </div>
-    
-    <div class="corner-text bottom-left">Let the celebrations begin!</div>
-    <div class="description">
+    <div class="description desc-bottom-left">
         From cozy dinners to gift exchanges, from laughter-filled gatherings to quiet moments of reflection, let’s make this holiday season unforgettable. May it be filled with the joy of giving and receiving.
     </div>
-    
-    <div class="corner-text bottom-right">Wishing you joy and happiness!</div>
-    <div class="description">
+    <div class="description desc-bottom-right">
         May the new year bring peace, prosperity, and endless opportunities. Here’s to love, laughter, and all the wonderful memories we create in this special season. Let’s make the most of every moment!
     </div>
 
@@ -113,7 +155,7 @@
                 snowflake.classList.add('snowflake');
                 snowflake.innerText = '❄'; // Snowflake symbol
 
-                // Set random position and animation
+                // Set random position and animation duration
                 let startPosition = Math.random() * 100;  // Random horizontal start position
                 let animationDuration = Math.random() * 10 + 5;  // Random speed for each snowflake
                 snowflake.style.left = startPosition + 'vw';
