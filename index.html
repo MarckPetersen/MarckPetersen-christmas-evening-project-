@@ -13,6 +13,7 @@
             padding: 0;
             height: 100vh;
             position: relative;
+            overflow: hidden;
         }
         #tree {
             width: 50%;
@@ -26,6 +27,8 @@
             background-color: rgba(255, 255, 255, 0.7);
             padding: 10px;
             border-radius: 5px;
+            width: 250px;
+            text-align: center;
         }
         .top-left {
             top: 10px;
@@ -43,14 +46,90 @@
             bottom: 10px;
             right: 10px;
         }
+        .description {
+            font-size: 16px;
+            color: #34495e;
+            margin-top: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            width: 90%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+        }
+
+        /* Snowflake animation */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            z-index: 9999;
+            user-select: none;
+            font-size: 24px;
+            color: #fff;
+            opacity: 0.8;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
     <img id="tree" src="christmas_tree.jpg" alt="Christmas Tree">
+    
     <div class="corner-text top-left">Merry Christmas!</div>
+    <div class="description top-left-desc">
+        This is the time of year to come together and celebrate the joys of family, love, and friendship. Let’s cherish the moments that make this season special, and spread warmth wherever we go.
+    </div>
+    
     <div class="corner-text top-right">The holiday season is here!</div>
+    <div class="description top-right-desc">
+        It’s that magical time when homes glow with festive lights, the scent of fresh pine fills the air, and hearts are filled with anticipation. The holiday season brings us all a little closer together.
+    </div>
+    
     <div class="corner-text bottom-left">Let the celebrations begin!</div>
+    <div class="description bottom-left-desc">
+        From cozy dinners to gift exchanges, from laughter-filled gatherings to quiet moments of reflection, let’s make this holiday season unforgettable. May it be filled with the joy of giving and receiving.
+    </div>
+    
     <div class="corner-text bottom-right">Wishing you joy and happiness!</div>
+    <div class="description bottom-right-desc">
+        May the new year bring peace, prosperity, and endless opportunities. Here’s to love, laughter, and all the wonderful memories we create in this special season. Let’s make the most of every moment!
+    </div>
+
+    <!-- Snow effect -->
+    <script>
+        function createSnow() {
+            let snowContainer = document.body;
+
+            // Create snowflakes
+            setInterval(() => {
+                let snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerText = '❄'; // Snowflake symbol
+
+                // Set random position and animation
+                let startPosition = Math.random() * 100;  // Random horizontal start position
+                let animationDuration = Math.random() * 10 + 5;  // Random speed for each snowflake
+                snowflake.style.left = startPosition + 'vw';
+                snowflake.style.animationDuration = animationDuration + 's';
+
+                // Append snowflake to the body
+                snowContainer.appendChild(snowflake);
+
+                // Remove snowflake after it falls
+                setTimeout(() => {
+                    snowflake.remove();
+                }, animationDuration * 1000);  // After animation duration ends
+            }, 200); // Create a new snowflake every 200ms
+        }
+
+        // Start snow effect
+        createSnow();
+    </script>
 </body>
 </html>
-
