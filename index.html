@@ -74,13 +74,13 @@
             width: 250px;
         }
         .desc-bottom-left {
-            bottom: 150px;
+            bottom: 80px;
             left: 10px;
             position: absolute;
             width: 250px;
         }
         .desc-bottom-right {
-            bottom: 150px;
+            bottom: 80px;
             right: 10px;
             position: absolute;
             width: 250px;
@@ -94,23 +94,13 @@
             user-select: none;
             font-size: 24px;
             opacity: 0.8;
-            animation: fall 10s linear infinite, rotate 3s linear infinite; /* Added rotate animation */
+            animation: fall 10s linear infinite;
         }
 
         /* Keyframes for snowflake falling */
         @keyframes fall {
             to {
                 transform: translateY(100vh);
-            }
-        }
-
-        /* Keyframes for snowflake rotation */
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
             }
         }
 
