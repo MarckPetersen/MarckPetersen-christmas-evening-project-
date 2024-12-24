@@ -1,27 +1,182 @@
-/* Snowflake animation */
-.snowflake {
-    position: absolute;
-    top: -10px;
-    z-index: 9999;
-    user-select: none;
-    font-size: 24px;
-    opacity: 0.8;
-    animation: fall 10s linear infinite, rotate 3s linear infinite; /* Added rotate animation */
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Evening Project</title>
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        #tree {
+            width: 50%;
+            max-width: 500px;
+            margin-top: 50px;
+        }
+        /* Corner Text */
+        .corner-text {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 5px;
+            width: 250px;
+        }
+        .top-left {
+            top: 10px;
+            left: 10px;
+        }
+        .top-right {
+            top: 10px;
+            right: 10px;
+        }
+        .bottom-left {
+            bottom: 250px;
+            left: 10px;
+        }
+        .bottom-right {
+            bottom: 250px;
+            right: 10px;
+        }
+        /* Description Text */
+        .description {
+            font-size: 16px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .desc-top-left {
+            top: 80px;
+            left: 10px;
+            position: absolute;
+            width: 250px;
+        }
+        .desc-top-right {
+            top: 80px;
+            right: 10px;
+            position: absolute;
+            width: 250px;
+        }
+        .desc-bottom-left {
+            bottom: 150px;
+            left: 10px;
+            position: absolute;
+            width: 250px;
+        }
+        .desc-bottom-right {
+            bottom: 150px;
+            right: 10px;
+            position: absolute;
+            width: 250px;
+        }
 
-/* Keyframes for snowflake falling */
-@keyframes fall {
-    to {
-        transform: translateY(100vh);
-    }
-}
+        /* Snowflake animation */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            z-index: 9999;
+            user-select: none;
+            font-size: 24px;
+            opacity: 0.8;
+            animation: fall 10s linear infinite, rotate 3s linear infinite; /* Added rotate animation */
+        }
 
-/* Keyframes for snowflake rotation */
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+        /* Keyframes for snowflake falling */
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Keyframes for snowflake rotation */
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <img id="tree" src="christmas_tree.jpg" alt="Christmas Tree">
+    
+    <!-- Headline text in the four corners -->
+    <div class="corner-text top-left">Merry Christmas!</div>
+    <div class="corner-text top-right">The holiday season is here!</div>
+    <div class="corner-text bottom-left">Let the celebrations begin!</div>
+    <div class="corner-text bottom-right">Wishing you joy and happiness!</div>
+    
+    <!-- Description text underneath each headline -->
+    <div class="description desc-top-left">
+        This is the time of year to come together and celebrate the joys of family, love, and friendship. Let’s cherish the moments that make this season special, and spread warmth wherever we go.
+    </div>
+    <div class="description desc-top-right">
+        It’s that magical time when homes glow with festive lights, the scent of fresh pine fills the air, and hearts are filled with anticipation. The holiday season brings us all a little closer together.
+    </div>
+    <div class="description desc-bottom-left">
+        From cozy dinners to gift exchanges, from laughter-filled gatherings to quiet moments of reflection, let’s make this holiday season unforgettable. May it be filled with the joy of giving and receiving.
+    </div>
+    <div class="description desc-bottom-right">
+        May the new year bring peace, prosperity, and endless opportunities. Here’s to love, laughter, and all the wonderful memories we create in this special season. Let’s make the most of every moment!
+    </div>
+
+    <!-- Snow effect -->
+    <script>
+        function createSnow() {
+            let snowContainer = document.body;
+
+            // Create snowflakes
+            setInterval(() => {
+                let snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerText = '❄'; // Snowflake symbol
+
+                // Randomly choose between blue and red snowflakes
+                let color = Math.random() < 0.9 ? '#3498db' : '#e74c3c';  // 90% chance for blue or red
+                snowflake.style.color = color;
+
+                // Occasionally add a gold snowflake (about 1 out of 20)
+                if (Math.random() < 0.05) {
+                    snowflake.style.color = '#f1c40f'; // Gold color for special snowflakes
+                }
+
+                // Set random position and animation duration
+                let startPosition = Math.random() * 100;  // Random horizontal start position
+                let animationDuration = Math.random() * 10 + 5;  // Random speed for each snowflake
+                snowflake.style.left = startPosition + 'vw';
+                snowflake.style.animationDuration = animationDuration + 's';
+
+                // Append snowflake to the body
+                snowContainer.appendChild(snowflake);
+
+                // Remove snowflake after it falls
+                setTimeout(() => {
+                    snowflake.remove();
+                }, animationDuration * 1000);  // After animation duration ends
+            }, 200); // Create a new snowflake every 200ms
+        }
+
+        // Start snow effect
+        createSnow();
+    </script>
+</body>
+</html>
