@@ -85,9 +85,8 @@
             position: absolute;
             width: 250px;
         }
-
         /* Snowflake animation */
-        .snowflake {
+        .snowflake, .snowman {
             position: absolute;
             top: -10px;
             z-index: 9999;
@@ -96,14 +95,15 @@
             opacity: 0.8;
             animation: fall 10s linear infinite;
         }
-
-        /* Keyframes for snowflake falling */
+        .snowman {
+            font-size: 40px; /* Larger size for snowman */
+        }
+        /* Keyframes for falling animation */
         @keyframes fall {
             to {
                 transform: translateY(100vh);
             }
         }
-
     </style>
 </head>
 <body>
@@ -120,13 +120,13 @@
         This is the time of year to come together and celebrate the joys of family, love, and friendship. Let’s cherish the moments that make this season special, and spread warmth wherever we go.
     </div>
     <div class="description desc-top-right">
-        It’s that magical time when homes glow with festive lights, the scent of fresh pine fills the air, and hearts are filled with anticipation. The holiday season brings us all a little closer together.
+        It’s that magical time when homes glow with festive lights, the scent of fresh pine fills the air, and hearts are filled with anticipation. The holiday season brings us all a little closer.
     </div>
     <div class="description desc-bottom-left">
-        From cozy dinners to gift exchanges, from laughter-filled gatherings to quiet moments of reflection, let’s make this holiday season unforgettable. May it be filled with the joy of giving and receiving.
+        From cozy dinners to gift exchanges, from laughter-filled gatherings to quiet moments of reflection, let’s make this holiday season unforgettable. May it be filled with the joy of giving.
     </div>
     <div class="description desc-bottom-right">
-        May the new year bring peace, prosperity, and endless opportunities. Here’s to love, laughter, and all the wonderful memories we create in this special season. Let’s make the most of every moment!
+        May the new year bring peace, prosperity, and endless opportunities. Here’s to love, laughter, and all the wonderful memories we create in this special season. Let’s make the most of it.
     </div>
 
     <!-- Snow effect -->
@@ -134,35 +134,36 @@
         function createSnow() {
             let snowContainer = document.body;
 
-            // Create snowflakes
+            // Create snowflakes and snowmen
             setInterval(() => {
-                let snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.innerText = '❄'; // Snowflake symbol
+                let element = document.createElement('div');
+                let isSnowman = Math.random() < 0.1; // 10% chance to create a snowman
+                element.classList.add(isSnowman ? 'snowman' : 'snowflake');
+                element.innerText = isSnowman ? '⛄' : '❄'; // Snowman or snowflake symbol
 
-                // Randomly choose between blue and red snowflakes
-                let color = Math.random() < 0.9 ? '#3498db' : '#e74c3c';  // 90% chance for blue or red
-                snowflake.style.color = color;
+                // Randomly choose between blue and red for snowflakes, and different colors for snowmen
+                let color = isSnowman ? '#000' : (Math.random() < 0.9 ? '#3498db' : '#e74c3c');
+                element.style.color = color;
 
                 // Occasionally add a gold snowflake (about 1 out of 20)
-                if (Math.random() < 0.05) {
-                    snowflake.style.color = '#f1c40f'; // Gold color for special snowflakes
+                if (!isSnowman && Math.random() < 0.05) {
+                    element.style.color = '#f1c40f'; // Gold color for special snowflakes
                 }
 
                 // Set random position and animation duration
                 let startPosition = Math.random() * 100;  // Random horizontal start position
-                let animationDuration = Math.random() * 10 + 5;  // Random speed for each snowflake
-                snowflake.style.left = startPosition + 'vw';
-                snowflake.style.animationDuration = animationDuration + 's';
+                let animationDuration = Math.random() * 10 + 5;  // Random speed for each element
+                element.style.left = startPosition + 'vw';
+                element.style.animationDuration = animationDuration + 's';
 
-                // Append snowflake to the body
-                snowContainer.appendChild(snowflake);
+                // Append element to the body
+                snowContainer.appendChild(element);
 
-                // Remove snowflake after it falls
+                // Remove element after it falls
                 setTimeout(() => {
-                    snowflake.remove();
+                    element.remove();
                 }, animationDuration * 1000);  // After animation duration ends
-            }, 200); // Create a new snowflake every 200ms
+            }, 200); // Create a new element every 200ms
         }
 
         // Start snow effect
