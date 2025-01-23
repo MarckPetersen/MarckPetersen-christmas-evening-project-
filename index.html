@@ -85,8 +85,8 @@
             position: absolute;
             width: 250px;
         }
-        /* Snowflake animation */
-        .snowflake, .snowman {
+        /* Snowflake and Cat/Dog animation */
+        .snowflake, .snowman, .cat, .dog {
             position: absolute;
             top: -10px;
             z-index: 9999;
@@ -97,6 +97,12 @@
         }
         .snowman {
             font-size: 40px; /* Larger size for snowman */
+        }
+        .cat {
+            font-size: 30px; /* Cat size */
+        }
+        .dog {
+            font-size: 30px; /* Dog size */
         }
         /* Keyframes for falling animation */
         @keyframes fall {
@@ -129,7 +135,7 @@
         May the new year bring peace, prosperity, and endless opportunities. Here’s to love, laughter, and all the wonderful memories we create in this special season. Let’s make the most of it.
     </div>
 
-    <!-- Snow effect -->
+    <!-- Snow and Raining Cats/Dogs effect -->
     <script>
         function createSnow() {
             let snowContainer = document.body;
@@ -166,8 +172,39 @@
             }, 200); // Create a new element every 200ms
         }
 
-        // Start snow effect
+        function createRain() {
+            let rainContainer = document.body;
+
+            // Create raining cats and dogs
+            setInterval(() => {
+                let element = document.createElement('div');
+                let isCat = Math.random() < 0.5; // 50% chance to create a cat or a dog
+                element.classList.add(isCat ? 'cat' : 'dog');
+                element.innerText = isCat ? '🐱' : '🐶'; // Cat or Dog symbol
+
+                // Randomly choose a color for cats and dogs
+                let color = Math.random() < 0.5 ? '#f39c12' : '#2ecc71'; // Random color for cats/dogs
+                element.style.color = color;
+
+                // Set random position and animation duration
+                let startPosition = Math.random() * 100;  // Random horizontal start position
+                let animationDuration = Math.random() * 10 + 5;  // Random speed for each element
+                element.style.left = startPosition + 'vw';
+                element.style.animationDuration = animationDuration + 's';
+
+                // Append element to the body
+                rainContainer.appendChild(element);
+
+                // Remove element after it falls
+                setTimeout(() => {
+                    element.remove();
+                }, animationDuration * 1000);  // After animation duration ends
+            }, 500); // Create a new element every 500ms
+        }
+
+        // Start snow and rain effect
         createSnow();
+        createRain();
     </script>
 </body>
 </html>
